@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <title>{% block title %}Home{% endblock %}</title>
+
+    <!-- {% block head %}{% endblock %} -->
+</head>
+<body>
+
+    <ul>
+        <li>hola</li>
+        <li>adios</li>
+        <li>aqui se puede ver como se esta poniendo cuando se llama a Home </li>
+    </ul>
+
+    <div class="container">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+
+    <h2>Aqui algo despues del bloque</h2>
+    
+
+  
+    
+</body>
+</html>
