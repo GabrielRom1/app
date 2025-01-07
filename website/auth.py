@@ -5,8 +5,9 @@ auth = Blueprint('auth', __name__)
 
 
 
-@auth.route('/login')
+@auth.route('/login',  methods=['GET'])
 def login():
+    print("en login")
     return render_template('login.html')
 
 

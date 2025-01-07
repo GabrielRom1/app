@@ -10,8 +10,11 @@ views = Blueprint('views', __name__)
 @views.route('/')
 def index():
     admin = Admin.query.all()
+
+    # 1, 0, None
     print("llego aqui")
 
+    # si no hay nada en la db entonces a esa ruta
     if not admin:
         return redirect(url_for('install.finstall'))
 
