@@ -23,77 +23,75 @@
 
 
 
-    <h2>Formulario de Registro. MANERA "CORRECTA"</h2>
-
-    
-    <form id="myForm2">
-        <label for="name2">Name:</label>
-        <input type="text" id="name2" name="name2" required>
-        
-        <label for="email2">Email:</label>
-        <input type="email" id="email2" name="email2" required>
-        
-        <label for="password2">Password:</label>
-        <input type="password" id="password2" name="password2" required>
-        
-        <button type="button" id="post_button">Send POST REQUEST</button>
-    </form>
+<h2>Formulario de Registro. MANERA "CORRECTA"</h2>
 
 
-    <script type="text/javascript">
+<form id="myForm2" class="login">
+    <label for="name2">Name:</label>
+    <input type="text" id="name2" name="name2" required>
+    <br>
 
-        const post_button = document.getElementById('post_button');
-        const form2 = document.getElementById('myForm2');
+    <label for="email2">Email:</label>
+    <input type="email" id="email2" name="email2" required>
+    <br>
 
-        // const jsonData = {name: 'Mike'}
+    <label for="password2">Password:</label>
+    <input type="password" id="password2" name="password2" required>
+    <br>
 
-        
-
-        post_button.addEventListener('click', ()=>{
-
-            // Crear un objeto FormData con los datos del formulario
-            const formData = new FormData(form2);
-        
-            // Convertir FormData en un objeto JSON
-            const jsonData = Object.fromEntries(formData.entries());
-
-            console.log('Datos del formulario en JSON:', jsonData);
-            
+    <button type="button" id="post_button"> Send POST REQUEST </button>
+</form>
 
 
-            fetch('{{url_for("install.JSON")}}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8'
-                },
-                body: JSON.stringify(jsonData)
-            })
+<script type="text/javascript">
+
+    const post_button = document.getElementById('post_button');
+    const form2 = document.getElementById('myForm2');
+
+    // const jsonData = {name: 'Mike'}
+
+    post_button.addEventListener('click', () => {
+
+        // Crear un objeto FormData con los datos del formulario
+        const formData = new FormData(form2);
+
+        // Convertir FormData en un objeto JSON
+        const jsonData = Object.fromEntries(formData.entries());
+
+        console.log('Datos del formulario en JSON:', jsonData);
+
+
+
+        fetch('{{url_for("install.JSON")}}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(jsonData)
+        })
             .then(response => response.json())
             .then(data => {
-            // // Aquí puedes acceder a los campos del JSON del servidor
-            // console.log('Mensaje del servidor:', data.message); // Accede a "message"
-            // console.log('Éxito:', data.success); // Accede a "success"
+                // // Aquí puedes acceder a los campos del JSON del servidor
+                // console.log('Mensaje del servidor:', data.message); // Accede a "message"
+                // console.log('Éxito:', data.success); // Accede a "success"
 
-            // // Puedes usar lógica condicional
-            if (data.success) {
-                alert(data.message); // Muestra el mensaje en una alerta
-                window.location.href = data.redirect_url;
-            } else {
-                console.error('Algo salió mal:', data.message);
-            }
-            // alert(data.success)
-        })
-        .catch(error => {
-            // Maneja cualquier error de la red o de JSON
-            // console.error('Error:', error);
-            alert("error")
-        });
+                // // Puedes usar lógica condicional
+                if (data.success) {
+                    alert(data.message); // Muestra el mensaje en una alerta
+                    window.location.href = data.redirect_url;
+                } else {
+                    console.error('Algo salió mal:', data.message);
+                }
+                // alert(data.success)
+            })
+            .catch(error => {
+                // Maneja cualquier error de la red o de JSON
+                // console.error('Error:', error);
+                alert("error")
+            });
     });
 
-    </script>
-
-
-
+</script>
 
 
 

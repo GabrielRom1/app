@@ -1,5 +1,37 @@
-body {
-    margin: 0px;
-    font-family: sans-serif;
-    color: black;
+html {
+    height: 100%;
+    width: 100%;
+
+    body {
+        margin: 0px;
+        font-family: sans-serif;
+        color: white;
+        background-color: black;
+    }
+
+    .login {
+        margin: auto;
+        padding: 30px;
+
+        height: fit-content;
+        width: 40%;
+
+        display: flex;
+        flex-direction: column;
+
+        color: white;
+        background-color: rgb(37, 37, 37);
+        border: 1px solid rgb(141, 141, 141);
+        border-radius: 20px;
+    }
+
+    #post_button {
+        align-self: flex-end;
+        width: 33%;
+    }
 }
+
+/* Siempre debes wrap el stylesheet con un html { height: 100%; width: 100%;}
+   esto se hace para asegurar que se mantenga las proporciones de los elementos */
+
+
