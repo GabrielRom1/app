@@ -27,7 +27,7 @@ def create_app():
 
 
     # incluir las demas tablas ademas de Admin
-    from .models import Admin
+    from .models import Admin, Users
 
     create_database(app)
 
