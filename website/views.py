@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, request
 from .models import Admin
 
 #se va a definir los blueprints, son un monton de rutas para poder dividir el codigo
@@ -19,6 +19,16 @@ def index():
         return redirect(url_for('install.finstall'))
 
     return render_template('index.html')
+
+
+@views.route('/home' , methods = ['GET'])
+def home():
+
+    if request.method == 'GET':
+        print("EN EL GET DE HOME")
+
+    return render_template('home.html')
+
 
 
 
