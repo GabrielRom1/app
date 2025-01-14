@@ -4,4 +4,76 @@
 
 {% block content %}
 <h1>This is the LOGIN page</h1>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <!-- <ul class=flashes> -->
+    {% for message in messages %}
+      <!-- <li> -->
+        {{ message }}
+    <!-- </li> -->
+    {% endfor %}
+    <!-- </ul> -->
+  {% endif %}
+{% endwith %}
+
+
+<form id="login" class="login">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+
+    <button type="button" id="post_button"> Send POST REQUEST </button>
+</form>
+
+
+
+<script type="text/javascript">
+
+    const post_button = document.getElementById('post_button');
+    const form = document.getElementById('login');
+
+    post_button.addEventListener('click', () => {
+
+        // Crear un objeto FormData con los datos del formulario
+        const formData = new FormData(form);
+
+        // Convertir FormData en un objeto JSON
+        const jsonData = Object.fromEntries(formData.entries());
+
+        console.log('Datos del formulario en JSON:', jsonData);
+
+        fetch('{{url_for("auth.login")}}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(jsonData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                // // Aquí puedes acceder a los campos del JSON del servidor
+    
+                if (data.success) {
+                    alert(data.message); 
+                    // window.location.href = data.redirect_url;
+                } else {
+                    console.error('Algo salió mal:', data.message);
+                }
+                window.location.href = data.redirect_url;
+
+            })
+            .catch(error => {
+                // Maneja cualquier error de la red o de JSON
+                alert("error")
+            });
+    });
+
+</script>
+
 {% endblock %}
